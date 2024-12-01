@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Advent of Code 2024</title>
+        <script src="days/day1.js"></script>
+    </head>
+    <body>
+        <table>
+            <tr><td>Problem</td></tr>
+            <tr><td><textarea rows="20" cols="40" id="textin"></textarea></td></tr>
+            <tr><td><button type="button" onclick="callSolve();">Solve</button><button id="solve2" type="button" onclick="callSolve2();" disabled="disabled">Solve (2)</button></td></tr>
+            <tr><td>Solution</td></tr>
+            <tr><td><input type="text" disabled="disabled" id="solution"></td></tr>
+    </table>
+</body>
+    <script>
+        function callSolve() {
+            const input = document.getElementById('textin').value;
+            const output = solve1(input);
+            try {
+                document.getElementById('solution').value = output;
+                document.getElementById('solution').removeAttribute('disabled');
+                document.getElementById('solve2').removeAttribute('disabled');
+                document.getElementById('textin').value = '';
+                console.log("Answer is " + output);
+            } catch(e) {
+                console.log(e);
+            }
+        }
+        function callSolve2() {
+            const input = document.getElementById('textin').value;
+            document.getElementById('solution').setAttribute('disabled', "disabled");
+            const output = solve2(input);
+            try {
+                document.getElementById('solution').value = output;
+                document.getElementById('solution').removeAttribute('disabled');
+                console.log("Answer is " + output);
+            } catch(e) {
+                console.log(e);
+            }
+        }
+    </script>
+</html>
