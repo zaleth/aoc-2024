@@ -1,4 +1,8 @@
 
+/**
+ * Day 2: Took a while to read the second problem correctly - remove _either_ half of an unsafe pair
+ */
+
 function solve1(text) {
     const lines = text.split('\n');
     console.log("# of lines: " + lines.length);

@@ -1,4 +1,7 @@
 
+/**
+ * Day 1: We start easy this year
+ */
 var left, right;
 
 function solve1(text) {
