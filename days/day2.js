@@ -25,14 +25,6 @@ function solve2(text) {
     return sum;
 }
 
-function makeArray(line) {
-    var array = new Array();
-    line.split(' ').forEach((num) => {
-        array.push(parseInt(num));
-    });
-    return array;
-}
-
 function counts(array) {
     console.log("Array: " + array);
     if(array[0] < array[1]) {
