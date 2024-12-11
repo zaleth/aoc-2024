@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Advent of Code 2024</title>
-        <script src="days/day9.js"></script>
+        <script src="days/day11.js"></script>
         <script src="lib.js"></script>
     </head>
     <body>
@@ -9,6 +9,7 @@
             <tr><td>Problem</td></tr>
             <tr><td><textarea rows="20" cols="40" id="textin"></textarea></td></tr>
             <tr><td><button type="button" onclick="callSolve();">Solve</button><button id="solve2" type="button" onclick="callSolve2();">Solve (2)</button></td></tr>
+            <tr><td>Counter: <span id="counter"></span></td></tr>
             <tr><td>Solution</td></tr>
             <tr><td><input type="text" disabled="disabled" id="solution"></td></tr>
     </table>
@@ -38,6 +39,9 @@
             } catch(e) {
                 console.log(e);
             }
+        }
+        function setCounter(text) {
+            document.getElementById('counter').textContent = text;
         }
     </script>
 </html>
