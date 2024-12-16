@@ -87,8 +87,3 @@ function solve2(text) {
     var sum = 0;
     return sum;
 }
-
-// Thanks StackOverflow for how to extend a builtin class
-String.prototype.replaceAt = function(index, replacement) {
-    return this.substring(0, index) + replacement + this.substring(index + replacement.length);
-}

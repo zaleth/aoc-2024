@@ -31,3 +31,8 @@ function printNum(val) {
         str = val + ',' + str;
     return str.slice(0,-1);
 }
+
+// Thanks StackOverflow for how to extend a builtin class
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+}
