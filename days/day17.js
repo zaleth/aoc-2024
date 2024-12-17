@@ -1,12 +1,14 @@
 
 /**
  * Day 17: Assembly emulator, hooray!
+ * Took a good while for me to come up with the smarter way to solve part 2, including widening the net.
+ * The simple x(n+1) = 8*x(n) + (0..7) only worked part of the way.
  */
 
 var a, b, c;
-var out = new Array();
+var out;
 var code;
-var ip = 0;
+var ip;
 
 function solve1(text) {
     const lines = text.split('\n');
@@ -15,6 +17,8 @@ function solve1(text) {
     b = parseInt(lines[1].split(':')[1]);
     c = parseInt(lines[2].split(':')[1]);
     code = lines[4].split(':')[1].split(',');
+    out = new Array();
+    ip = 0;
     while(ip < code.length) {
         debug();
         exec();
@@ -23,30 +27,42 @@ function solve1(text) {
     return sum;
 }
 
-const offset = 20240000;
 function solve2(text) {
     const lines = text.split('\n');
     console.log("# of lines: " + lines.length);
     code = lines[4].split(':')[1].split(',');
-    var prog = code.join();
-    for(var aa = 0; aa < 1000000 &&  prog != out.join(); aa++) {
-        a = aa + offset;
-        b = 0;
-        c = 0;
-        ip = 0;
-        out = new Array();
-        var running = true;
-        while(running) {
-            exec();
-            running = ip < code.length;
-            for(var j = 0; running && j < out.length; j++) {
-                if(parseInt(code[j]) != out[j])
-                    running = false;
+    var x = 0;
+    for(var i = 1; i <= code.length; i++) {
+        var match;
+        for(var aa = 0; aa < 8*i; aa++) {
+            match = true;
+            a = aa + x;
+            b = 0;
+            c = 0;
+            ip = 0;
+            out = new Array();
+            while(ip < code.length) {
+                exec();
+            }
+            for(var j = 0; j < i; j++) {
+                if(out[j] != parseInt(code[code.length-i + j])) {
+                    match = false;
+                }
+            }
+            if(match) {
+                    x += aa;
+                    aa = 8*i;
             }
         }
-        console.log("Run ",aa,out.join());
+        if(match) {
+            console.log("Run ",i,x,out.join());
+            x *= 8;
+        } else {
+            i--;
+            x += 8;
+        }
     }
-    var sum = aa;
+    var sum = x;
     return sum;
 }
 
