@@ -1,6 +1,6 @@
 
 /**
- * Day 17: Only solve first part
+ * Day 22: Only solve first part
  */
 
 function solve1(text) {
@@ -10,13 +10,8 @@ function solve1(text) {
     lines.forEach((line, idx) => {
         var num = parseInt(line);
         console.log("Seed: " + num);
-        for(var step = 0; step < 2000; step++) {
-            var val = num << 6;
-            num = prune(mix(num, val));
-            val = num >> 5;
-            num = prune(mix(num, val));
-            val = num << 11;
-            num = prune(mix(num, val));
+        for(var i = 0; i < 2000; i++) {
+            num = step(num);
         }
         sum += num;
     });
@@ -34,11 +29,20 @@ function solve2(text) {
     return sum;
 }
 
+function step(num) {
+    var val = num << 6;
+    num = prune(mix(num, val));
+    val = num >> 5;
+    num = prune(mix(num, val));
+    val = num << 11;
+    num = prune(mix(num, val));
+    return num;
+}
+
 function mix(a, b) {
     return a ^ b;
 }
 
 function prune(a) {
-    //return a % 16777216;
     return a & 0xFFFFFF;
 }
